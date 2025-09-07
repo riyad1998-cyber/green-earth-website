@@ -17,7 +17,7 @@ async function loadCategories(){
     const allLi = document.createElement("li");
     allLi.innerHTML= `
       <button id="all-plants-btn" onclick="setActiveCategory(this); loadPlants();"
-        class="w-full text-left px-3 py-2 rounded-lg hover:bg-green-600 hover:text-white transition-colors duration-300 font-semibold">
+        class="w-full text-left px-3 py-2 rounded-lg hover:bg-green-600 hover:text-white transition-colors duration-300">
         All Trees
       </button>
     `;
