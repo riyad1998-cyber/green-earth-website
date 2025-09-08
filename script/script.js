@@ -36,26 +36,26 @@ async function loadCategories(){
     if(allPlantsBtn){
       setActiveCategory(allPlantsBtn);
     }
-  } catch (err) {
-    console.error("Error loading categories:", err);
+  } catch (err){
+    console.error("Error loading categories:",err);
   }
 }
 //highlight selected category
-function setActiveCategory(selectedBtn) {
+function setActiveCategory(selectedBtn){
   const allButtons= document.querySelectorAll("#categories-list button");
   for (const btn of allButtons) {
-    btn.classList.remove("bg-green-600", "text-white", "font-bold");
-    btn.classList.add("hover:bg-green-600", "hover:text-white");
+    btn.classList.remove("bg-green-600", "text-white","font-bold");
+    btn.classList.add("hover:bg-green-600","hover:text-white");
   }
   selectedBtn.classList.add("bg-green-600","text-white","font-bold");
 }
 //load all plants
-async function loadPlants() {
+async function loadPlants(){
   showSpinner();
   try{
     const res= await fetch("https://openapi.programming-hero.com/api/plants");
     const data =await res.json();
-    const plants =data.plants || data.data;
+    const plants =data.plants|| data.data;
     await renderPlantsWithDetails(plants);
   } catch (err) {
     console.error("Error loading plants:",err);
@@ -67,7 +67,7 @@ async function loadPlantsByCategory(categoryId, categoryName) {
   try {
     const res = await fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`);
     const data = await res.json();
-    const plants = data.plants || data.data;
+    const plants = data.plants||data.data;
     await renderPlantsWithDetails(plants);
   } catch (err) {
     console.error("Error loading category plants:", err);
@@ -83,7 +83,7 @@ async function renderPlantsWithDetails(plants){
   }
   for(const plant of plants){
     try{
-      const detailRes=await fetch(`https://openapi.programming-hero.com/api/plant/${plant.id || plant.plant_id}`);
+      const detailRes=await fetch(`https://openapi.programming-hero.com/api/plant/${plant.id}`);
       const detailData=await detailRes.json();
       const detail =detailData.data||plant;
       const categoryName= detail.category;
@@ -91,16 +91,16 @@ async function renderPlantsWithDetails(plants){
       card.className= "w-full sm:w-[343px] rounded-xl bg-white p-4 flex flex-col shadow";
       card.innerHTML= `
         <div class="flex justify-center">
-          <img src="${detail.image_url || detail.image}" 
-               alt="${detail.plant_name || detail.name}" 
+          <img src="${detail.image}" 
+               alt="${detail.name}" 
                class="w-full sm:w-[311px] h-[186px] object-cover rounded-lg">
         </div>
         <h3 class="font-semibold text-[14px] mt-3 cursor-pointer"onclick='openModal(${JSON.stringify(detail)},"${categoryName}")'>
-          ${detail.plant_name||detail.name}
+          ${detail.name}
         </h3>
 
         <p class="text-[12px] mt-2">
-          ${detail.short_description ||detail.description}
+          ${detail.description}
         </p>
 
         <div class="flex justify-between items-center mt-3">
@@ -124,10 +124,10 @@ async function renderPlantsWithDetails(plants){
   }
 }
 // Add to cart
-function addToCart(plant, categoryName) {
+function addToCart(plant, categoryName){
   const plantId= String(plant.id||plant.plant_id);
   const existingItem=cart.find(item => item.id=== plantId);
-  if(existingItem) {
+  if(existingItem){
     existingItem.quantity += 1;
   }else{
     cart.push({
@@ -137,6 +137,7 @@ function addToCart(plant, categoryName) {
       quantity: 1
     });
   }
+    alert(`${plant.name} has been added to the cart`);
   renderCart();
 }
 
@@ -154,14 +155,14 @@ function renderCart(){
   }
   let totalAmount= 0;
   for (const item of cart) {
-    const price =parseFloat(item.price) || 0;
+    const price =parseFloat(item.price)||0;
     const subtotal=price * item.quantity;
     totalAmount +=subtotal;
     const div= document.createElement("div");
     div.className= "flex items-center justify-between bg-[#F0FDF4] p-2 rounded shadow border border-gray-200 mb-2";
     div.innerHTML= `
       <div>
-        <div class="text-sm font-semibold">${item.plant_name || item.name}</div>
+        <div class="text-sm font-semibold">${item.name}</div>
         <div class="text-xs text-gray-600 mt-1">৳${price} x ${item.quantity}</div>
         <div class="text-sm font-bold text-green-700 mt-1">৳${subtotal}</div>
       </div>
@@ -239,11 +240,11 @@ closeBtn.addEventListener("click",() =>{
 });
 
 function openModal(plant, categoryName){
-  modalName.innerText=plant.plant_name || plant.name;
-  modalImage.src=plant.image_url || plant.image;
+  modalName.innerText=plant.name;
+  modalImage.src= plant.image;
   modalCategory.innerHTML= `<span class="font-bold">Category:</span>${categoryName}`;
   modalPrice.innerHTML= `<span class="font-bold">Price:</span> ৳${plant.price}`;
-  modalDescription.innerHTML= `<span class="font-bold">Description:</span>${plant.short_description||plant.description}`;
+  modalDescription.innerHTML= `<span class="font-bold">Description:</span>${plant.description}`;
   modal.classList.remove("hidden");
 }
 
