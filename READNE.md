@@ -1,4 +1,5 @@
-<!-- Answer to the question no:01 -->
+Answer to the question no:01
+
 var,let and const are used to declare variables in JavaScript.
 var is the old way and works everywhere in the code.let is the modern way to declare variables that can be changed later.const is used when the value should never change after being set.
 I think for the best practice,we need to use const by default and let only when we need to update the value.
