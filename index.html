@@ -143,35 +143,40 @@
   </div>
 </section>
 <!-- Plant Tree Section -->
-<section class="bg-[#166534] w-full flex justify-center items-center py-8 md:h-[591px]">
+<section
+  class="bg-[#166534] w-full flex justify-center items-center py-8 md:h-[591px]">
   <div class="text-center px-4 md:px-0 w-full max-w-[650px]">
     <h1 class="text-[32px] font-medium mb-10 text-white">Plant a Tree Today</h1>
-
-    <div class="w-full h-auto bg-[#15803D] flex justify-center items-center rounded-xl mx-auto p-6">
-      <div class="flex flex-col space-y-4 sm:space-y-[20px] justify-center items-center w-full">
-        <input type="text" placeholder="Your Name" class="input w-full sm:w-[570px] h-[43px]" />
-        <input type="text" placeholder="Your Email Address" class="input w-full sm:w-[570px] h-[43px]" />
-      
-        <div class="dropdown w-full sm:w-[570px]">
-          <label tabindex="0" class="input w-full h-[43px] flex items-center justify-between text-gray-400 cursor-pointer">
-            Number Of Trees
-            <i class="fa-solid fa-chevron-down ml-2"></i>
-          </label>
-          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-full mt-1">
-            <li><a href="#">1 Tree - $5</a></li>
-            <li><a href="#">5 Trees - $25</a></li>
-            <li><a href="#">10 Trees - $50</a></li>
-          </ul>
-        </div>
-
-        <button class="w-full sm:w-[570px] h-[43px] bg-[#FACD15] text-green-600 font-500 rounded-2xl hover:bg-yellow-500 hover:-translate-y-0.5 transform transition duration-300 cursor-pointer">
+    <div
+      class="w-full h-auto bg-[#15803D] flex justify-center items-center rounded-xl mx-auto p-6">
+      <div
+        class="flex flex-col space-y-4 sm:space-y-[20px] justify-center items-center w-full">
+        <input
+          type="text"
+          placeholder="Your Name"
+          class="input w-full sm:w-[570px] h-[43px]"/>
+        <input
+          type="text"
+          placeholder="Your Email Address"
+          class="input w-full sm:w-[570px] h-[43px]"/>
+        <select
+          size="1"
+          class="select select-bordered w-full md:w-[570px] h-[43px] text-gray-400">
+          <option disabled selected>Number Of Trees</option>
+          <option value="1">1 Tree - $5</option>
+          <option value="5">5 Trees - $25</option>
+          <option value="10">10 Trees - $50</option>
+        </select>
+        <button
+          class="w-full sm:w-[570px] h-[43px] bg-[#FACD15] text-green-600 font-500 rounded-2xl hover:bg-yellow-500 hover:-translate-y-0.5 transform transition duration-300 cursor-pointer">
           Donate Now
         </button>
       </div>
     </div>
   </div>
 </section>
-<!-- Footer Part -->
+
+<!-- Footer -->
 <footer class="bg-green-900 w-full h-[72px] flex justify-center items-center">
   <p class="text-white text-center font-400">© 2025 Green Earth. All Rights Reserved.</p>
 </footer>
